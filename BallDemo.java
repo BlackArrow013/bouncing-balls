@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class BallDemo - a short demonstration showing animation with the 
@@ -13,6 +14,7 @@ public class BallDemo
 {
     private Canvas myCanvas;
     private ArrayList<BouncingBall> bolas;
+    private Random aleatorio;
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
      */
@@ -20,6 +22,7 @@ public class BallDemo
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
         bolas = new ArrayList<>();
+        aleatorio = new Random();
     }
 
     /**
@@ -35,7 +38,8 @@ public class BallDemo
         myCanvas.drawLine(50, ground, 550, ground);
         
         for (int i = 0; i < numBolas; i++) {
-            BouncingBall ball = new BouncingBall(50, 70 - 5*i, 16, Color.BLUE, ground, myCanvas);
+            int tamano = aleatorio.nextInt(50) + 8;
+            BouncingBall ball = new BouncingBall(50, 70 - 5*i, tamano, Color.BLUE, ground, myCanvas);
             ball.draw();
             bolas.add(ball);
         }
